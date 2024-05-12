@@ -3,6 +3,9 @@ import {NextUIProvider} from "@nextui-org/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,7 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <NextUIProvider>
-          {children}
+          <div className="flex flex-col min-h-svh bg-gray-custom">
+            <Header />
+            <main className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 py-5">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </NextUIProvider>
       </body>
     </html>
