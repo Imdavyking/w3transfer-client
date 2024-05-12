@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import {NextUIProvider} from "@nextui-org/react";
 import { Inter } from "next/font/google";
+import { Providers } from "@/contexts";
 import "./globals.css";
 
 import Header from "@/components/Header";
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextUIProvider>
+        <Providers>
           <div className="flex flex-col min-h-svh bg-gray-custom">
             <Header />
             <main className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 py-5">
@@ -29,7 +29,7 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
-        </NextUIProvider>
+        </Providers>
       </body>
     </html>
   );
