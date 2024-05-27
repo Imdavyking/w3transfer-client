@@ -1,35 +1,44 @@
 'use client'
 import {NextUIProvider} from "@nextui-org/react";
-import React, { createContext, Dispatch, SetStateAction, useContext, useMemo, useState } from 'react';
+import { usePathname } from "next/navigation";
+import { createContext, Dispatch, SetStateAction, useState, ReactNode, useEffect } from 'react';
 
 export type HeaderContentType = {
-  content?: React.ReactNode
-  setContent?: Dispatch<SetStateAction<HeaderContentType['content']>>
-  contentRight?: React.ReactNode
-  setContentRight?: Dispatch<SetStateAction<HeaderContentType['content']>>
-  contentLeft?: React.ReactNode
-  setContentLeft?: Dispatch<SetStateAction<HeaderContentType['content']>>
+  content?: ReactNode
+  setContent?: Dispatch<SetStateAction<ReactNode>>
+  contentRight?: ReactNode
+  setContentRight?: Dispatch<SetStateAction<ReactNode>>
+  contentLeft?: ReactNode
+  setContentLeft?: Dispatch<SetStateAction<ReactNode>>
 }
 // TODO: remember to check context on route change
 
 const defaultHeaderContent = {
   content: undefined,
-  setContent: (content:HeaderContentType['content']) => {},
+  setContent: (content:ReactNode) => {},
   contentRight: undefined,
-  setContentRight: (content:HeaderContentType['content']) => {},
+  setContentRight: (content:ReactNode) => {},
   contentLeft: undefined,
-  setContentLeft: (content:HeaderContentType['content']) => {},
+  setContentLeft: (content:ReactNode) => {},
 } as HeaderContentType
 export const HeaderContentContext = createContext(defaultHeaderContent)
 
 export function Providers({
   children
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
-  const [headerContent, setHeaderContent] = useState<HeaderContentType['content']>(undefined)
-  const [headerRightContent, setHeaderRightContent] = useState<HeaderContentType['content']>(undefined)
-  const [headerLeftContent, setHeaderLeftContent] = useState<HeaderContentType['content']>(undefined)
+  const [headerContent, setHeaderContent] = useState<ReactNode>(undefined)
+  const [headerRightContent, setHeaderRightContent] = useState<ReactNode>(undefined)
+  const [headerLeftContent, setHeaderLeftContent] = useState<ReactNode>(undefined)
+
+  const path = usePathname()
+  // reset header to default so page can control which what show
+  useEffect(()=>{
+    setHeaderContent!(undefined)
+    setHeaderRightContent!(undefined)
+    setHeaderLeftContent!(undefined)
+  },[path])
   
   return (
     <HeaderContentContext.Provider value={{
