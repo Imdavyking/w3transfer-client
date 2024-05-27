@@ -4,6 +4,7 @@ import { HeaderContentContext } from '@/contexts';
 import Link from 'next/link';
 import Button from '@/components/Button';
 import { Input } from '@nextui-org/react';
+import { toast } from 'sonner';
 
 type Props = {}
 
@@ -38,6 +39,10 @@ const login = (props: Props) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if(!form.email || !form.password) {
+      toast.error('Please fill all fields')
+      return
+    }
     console.log(form)
   }
 
@@ -54,7 +59,6 @@ const login = (props: Props) => {
               label="Enter your email / wallet address"
               variant="bordered"
               placeholder="1FRMM8PEiWXYax7rpS6X4X..."
-              isRequired
               classNames={styles}
             />
 
@@ -64,7 +68,6 @@ const login = (props: Props) => {
               label="Enter your password"
               variant="bordered"
               placeholder="****************"
-              isRequired
               endContent={
                 <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                   {isVisible ? (
@@ -82,7 +85,7 @@ const login = (props: Props) => {
           </div>
           <Button
             type='submit'
-            className='mt-10'>
+            className='mt-10 uppercase'>
             Login
           </Button>
         </form>
