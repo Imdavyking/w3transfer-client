@@ -1,6 +1,7 @@
 'use client'
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { HeaderContentContext } from '@/contexts';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 type Props = {}
@@ -11,6 +12,14 @@ const Header = ({}: Props) => {
     contentRight, setContentRight,
     contentLeft, setContentLeft
   } = useContext(HeaderContentContext)
+
+  const path = usePathname()
+  // reset header to default so page can control which what show
+  useEffect(()=>{
+    setContent!(undefined)
+    setContentRight!(undefined)
+    setContentLeft!(undefined)
+  },[path])
 
   return (
     <header className='bg-white border-b border-gray-custom-100'>

@@ -1,7 +1,6 @@
 'use client'
 import {NextUIProvider} from "@nextui-org/react";
-import { usePathname } from "next/navigation";
-import { createContext, Dispatch, SetStateAction, useState, ReactNode, useEffect } from 'react';
+import { createContext, Dispatch, SetStateAction, useState, ReactNode } from 'react';
 
 export type HeaderContentType = {
   content?: ReactNode
@@ -31,14 +30,6 @@ export function Providers({
   const [headerContent, setHeaderContent] = useState<ReactNode>(undefined)
   const [headerRightContent, setHeaderRightContent] = useState<ReactNode>(undefined)
   const [headerLeftContent, setHeaderLeftContent] = useState<ReactNode>(undefined)
-
-  const path = usePathname()
-  // reset header to default so page can control which what show
-  useEffect(()=>{
-    setHeaderContent!(undefined)
-    setHeaderRightContent!(undefined)
-    setHeaderLeftContent!(undefined)
-  },[path])
   
   return (
     <HeaderContentContext.Provider value={{
