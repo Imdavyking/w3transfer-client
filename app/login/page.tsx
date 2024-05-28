@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Button from '@/components/Button';
 import { Input } from '@nextui-org/react';
 import { toast } from 'sonner';
-import { Icon } from '@iconify/react';
 
 type Props = {}
 
@@ -21,12 +20,9 @@ const login = (props: Props) => {
     ))
   }, [])
 
-  const [form, setForm] = useState({
+  const [form] = useState({
     wallet: '',
-    password: ''
   })
-  const [isVisible, setIsVisible] = useState(false);
-  const toggleVisibility = () => setIsVisible(!isVisible);
 
   const styles = {
     label: "text-gray-custom-200",
@@ -40,8 +36,8 @@ const login = (props: Props) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if(!form.wallet || !form.password) {
-      toast.error('Please fill all fields')
+    if(!form.wallet) {
+      toast.error('Your wallet address has not been resolved. Please try again.')
       return
     }
     console.log(form)
@@ -64,27 +60,10 @@ const login = (props: Props) => {
               isDisabled
               classNames={styles}
             />
-            <Input
-              value={form.password}
-              onValueChange={(value) => setForm({ ...form, password: value })}
-              label="Enter your password"
-              variant="bordered"
-              placeholder="****************"
-              endContent={
-                <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                  <Icon
-                    className='text-2xl'
-                    icon={isVisible ? "solar:eye-bold": "solar:eye-closed-bold"}
-                  />
-                </button>
-              }
-              type={isVisible ? "text" : "password"}
-              classNames={styles}
-            />
           </div>
           <Button
             type='submit'
-            className='mt-5 uppercase'>
+            className='uppercase'>
             Login
           </Button>
           <Link className='flex self-end' href='/register'>Sign up for free</Link>
