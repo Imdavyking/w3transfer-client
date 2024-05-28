@@ -9,7 +9,7 @@ import FileShare from '@/components/activities/FileShare';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export enum AppOptions {
+enum AppOptions {
   ENVELOPES = 'envelopes',
   FILES = 'files',
 }
