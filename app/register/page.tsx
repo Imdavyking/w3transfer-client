@@ -17,7 +17,7 @@ const login = (props: Props) => {
   } = useContext(HeaderContentContext)
   useEffect(() => {
     setContentRight!(() => (
-      <h2>Login</h2>
+      <h2>Lets get you all set-up</h2>
     ))
   }, [])
 
@@ -50,14 +50,14 @@ const login = (props: Props) => {
   return (
     <div className='flex-1 flex justify-center items-center'>
       <div className='bg-white rounded p-6 md:p-20 w-[582px] md:max-w-[90%] border border-gray-custom-100'>
-        <h1 className='font-bold'>Login to {process.env.NEXT_PUBLIC_APP_NAME}</h1>
+        <h1 className='font-bold'>Signup to {process.env.NEXT_PUBLIC_APP_NAME}</h1>
         <form onSubmit={handleSubmit} className='flex flex-col gap-5 mt-5'>
           <div className='space-y-5'>
             <Input
               value={form.email}
               onValueChange={(value) => setForm({ ...form, email: value })}
               type="email"
-              label="Enter your email / wallet address"
+              label="Enter your wallet address"
               variant="bordered"
               placeholder="1FRMM8PEiWXYax7rpS6X4X..."
               classNames={styles}
@@ -83,9 +83,9 @@ const login = (props: Props) => {
           <Button
             type='submit'
             className='mt-5 uppercase'>
-            Login
+            NEXT
           </Button>
-          <Link className='flex self-end' href='/register'>Sign up for free</Link>
+          <Link className='flex self-end' href='/login'>Or Login?</Link>
         </form>
       </div>
     </div>
