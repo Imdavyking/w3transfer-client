@@ -22,7 +22,7 @@ const login = (props: Props) => {
   }, [])
 
   const [form, setForm] = useState({
-    email: '',
+    wallet: '',
     password: ''
   })
   const [isVisible, setIsVisible] = useState(false);
@@ -40,7 +40,7 @@ const login = (props: Props) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if(!form.email || !form.password) {
+    if(!form.wallet || !form.password) {
       toast.error('Please fill all fields')
       return
     }
@@ -54,12 +54,14 @@ const login = (props: Props) => {
         <form onSubmit={handleSubmit} className='flex flex-col gap-5 mt-5'>
           <div className='space-y-5'>
             <Input
-              value={form.email}
-              onValueChange={(value) => setForm({ ...form, email: value })}
-              type="email"
+              value={form.wallet}
+              // onValueChange={(value) => setForm({ ...form, wallet: value })}
+              type="text"
               label="Enter your wallet address"
               variant="bordered"
               placeholder="1FRMM8PEiWXYax7rpS6X4X..."
+              isReadOnly
+              isDisabled
               classNames={styles}
             />
             <Input
@@ -83,7 +85,7 @@ const login = (props: Props) => {
           <Button
             type='submit'
             className='mt-5 uppercase'>
-            NEXT
+            Proceed
           </Button>
           <Link className='flex self-end' href='/login'>Or Login?</Link>
         </form>
