@@ -1,6 +1,10 @@
 import type { Config } from "tailwindcss";
 const {nextui} = require("@nextui-org/react");
 
+export const colors = {
+  PRIMARY: "#1F2B69",
+  SECONDARY: "#77FF60",
+}
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,6 +14,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'gray-custom': {
+          'DEFAULT': '#F5F5F5',
+          100: '#D9D9D9',
+          200: '#8D8D8D',
+          300: '#1E1E1E',
+        },
+        secondary: colors.SECONDARY,
+        primary: colors.PRIMARY,
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -18,6 +32,15 @@ const config: Config = {
     },
   },
   // darkMode: "class",
-  plugins: [nextui()],
+  plugins: [nextui({
+    themes: {
+      dark: {
+        colors: {
+          secondary: colors.SECONDARY,
+          primary: colors.PRIMARY,
+        },
+      },
+    },
+  })],
 };
 export default config;
