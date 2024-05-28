@@ -5,17 +5,23 @@ export type Props = {
   children: ReactNode | string
   className?: string
   type?: "button" | "submit" | "reset"
+  href?: string
+  onPress?: () => void
 }
 const Button = ({
   children,
   className,
-  type = "button"
+  type = "button",
+  href,
+  onPress,
 }: Props) => {
   return (
     <Btn
       variant="solid"
       color="secondary"
       type={type}
+      href={href}
+      onPress={onPress}
       className={`${className} h-10 rounded text-primary`}>
       {children}
     </Btn>

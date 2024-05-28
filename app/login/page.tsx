@@ -1,27 +1,28 @@
 'use client'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import { HeaderContentContext } from '@/contexts';
 import Link from 'next/link';
 import Button from '@/components/Button';
 import { Input } from '@nextui-org/react';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 type Props = {}
 
-const login = (props: Props) => {
+const Login = (props: Props) => {
   const {
     content, setContent,
     contentRight, setContentRight,
     contentLeft, setContentLeft
   } = useContext(HeaderContentContext)
-  useEffect(() => {
+  useLayoutEffect(() => {
     setContentRight!(() => (
-      <h2>Login</h2>
+      <h2 className='md:text-xl'>Login</h2>
     ))
   }, [])
 
   const [form] = useState({
-    wallet: '',
+    wallet: '000aff6865635ae11013a83835c019d44ec3f865145943f487ae82a8e7bed3a66b29d7', // remove this in production
   })
 
   const styles = {
@@ -34,13 +35,15 @@ const login = (props: Props) => {
     ]
   };
 
+  const router = useRouter()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if(!form.wallet) {
       toast.error('Your wallet address has not been resolved. Please try again.')
       return
     }
-    console.log(form)
+    // navigate to the next page
+    router.push('/app')
   }
 
   return (
@@ -53,14 +56,15 @@ const login = (props: Props) => {
               value={form.wallet}
               // onValueChange={(value) => setForm({ ...form, wallet: value })}
               type="text"
-              label="Wallet address"
+              label="Your wallet address"
               variant="bordered"
-              placeholder="1FRMM8PEiWXYax7rpS6X4X..."
+              placeholder="000aff6865635ae11013a83835c01..."
               isReadOnly
               isDisabled
               classNames={styles}
             />
           </div>
+          
           <Button
             type='submit'
             className='uppercase'>
@@ -73,4 +77,4 @@ const login = (props: Props) => {
   )
 }
 
-export default login
+export default Login

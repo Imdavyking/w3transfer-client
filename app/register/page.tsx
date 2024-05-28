@@ -1,5 +1,5 @@
 'use client'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import { HeaderContentContext } from '@/contexts';
 import Link from 'next/link';
 import Button from '@/components/Button';
@@ -9,15 +9,15 @@ import { Icon } from '@iconify/react';
 
 type Props = {}
 
-const login = (props: Props) => {
+const Register = (props: Props) => {
   const {
     content, setContent,
     contentRight, setContentRight,
     contentLeft, setContentLeft
   } = useContext(HeaderContentContext)
-  useEffect(() => {
+  useLayoutEffect(() => {
     setContentRight!(() => (
-      <h2>Lets get you all set-up</h2>
+      <h2 className='md:text-xl'>Lets get you all set-up</h2>
     ))
   }, [])
 
@@ -55,9 +55,9 @@ const login = (props: Props) => {
               value={form.wallet}
               // onValueChange={(value) => setForm({ ...form, wallet: value })}
               type="text"
-              label="Enter your wallet address"
+              label="Your wallet address"
               variant="bordered"
-              placeholder="1FRMM8PEiWXYax7rpS6X4X..."
+              placeholder="000aff6865635ae11013a83835c01..."
               isReadOnly
               isDisabled
               className='select-none'
@@ -85,4 +85,4 @@ const login = (props: Props) => {
   )
 }
 
-export default login
+export default Register
