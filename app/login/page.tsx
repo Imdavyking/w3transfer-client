@@ -48,12 +48,12 @@ const login = (props: Props) => {
       <div className='bg-white rounded p-6 md:p-20 w-[582px] md:max-w-[90%] border border-gray-custom-100'>
         <h1 className='font-bold'>Login to {process.env.NEXT_PUBLIC_APP_NAME}</h1>
         <form onSubmit={handleSubmit} className='flex flex-col gap-5 mt-5'>
-          <div className='space-y-5'>
+          <div className='space-y-5 select-none'>
             <Input
               value={form.wallet}
               // onValueChange={(value) => setForm({ ...form, wallet: value })}
               type="text"
-              label="Enter your email / wallet address"
+              label="Wallet address"
               variant="bordered"
               placeholder="1FRMM8PEiWXYax7rpS6X4X..."
               isReadOnly
@@ -64,7 +64,7 @@ const login = (props: Props) => {
           <Button
             type='submit'
             className='uppercase'>
-            Login
+            Proceed
           </Button>
           <Link className='flex self-end' href='/register'>Sign up for free</Link>
         </form>
