@@ -60,6 +60,7 @@ const login = (props: Props) => {
               placeholder="1FRMM8PEiWXYax7rpS6X4X..."
               isReadOnly
               isDisabled
+              className='select-none'
               classNames={styles}
             />
             <Input
