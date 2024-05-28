@@ -23,10 +23,8 @@ const login = (props: Props) => {
 
   const [form, setForm] = useState({
     wallet: '',
-    password: ''
+    nickname: '',
   })
-  const [isVisible, setIsVisible] = useState(false);
-  const toggleVisibility = () => setIsVisible(!isVisible);
 
   const styles = {
     label: "text-gray-custom-200",
@@ -40,8 +38,8 @@ const login = (props: Props) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if(!form.wallet || !form.password) {
-      toast.error('Please fill all fields')
+    if(!form.wallet) {
+      toast.error('Your wallet address has not been resolved. Please try again.')
       return
     }
     console.log(form)
@@ -65,20 +63,12 @@ const login = (props: Props) => {
               classNames={styles}
             />
             <Input
-              value={form.password}
-              onValueChange={(value) => setForm({ ...form, password: value })}
-              label="Enter your password"
+              value={form.nickname}
+              onValueChange={(value) => setForm({ ...form, nickname: value })}
+              type="text"
+              label="Enter a nickname"
               variant="bordered"
-              placeholder="****************"
-              endContent={
-                <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                  <Icon
-                    className='text-2xl'
-                    icon={isVisible ? "solar:eye-bold": "solar:eye-closed-bold"}
-                  />
-                </button>
-              }
-              type={isVisible ? "text" : "password"}
+              placeholder="Starfish (optional)"
               classNames={styles}
             />
           </div>
