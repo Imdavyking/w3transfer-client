@@ -8,6 +8,7 @@ import Envelope from '@/components/activities/Envelope';
 import FileShare from '@/components/activities/FileShare';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { Icon } from '@iconify/react';
 
 enum AppOptions {
   ENVELOPES = 'envelopes',
@@ -69,7 +70,7 @@ const Dashboard = (props: Props) => {
 
   return (
     <div className='flex-1 flex flex-col gap-5'>
-      <section className='bg-white rounded p-2.5 border border-gray-custom-100'>
+      <section className='bg-white rounded p-5 border border-gray-custom-100'>
         <div className="flex justify-center">
           <Tabs
             aria-label="App options"
@@ -93,16 +94,16 @@ const Dashboard = (props: Props) => {
 
       <section>
         <div className='flex justify-between md:text-xl'>
-          <span className='font-semibold'>Recent activities</span>
-          <Link href={renderedOption.activities.link}>
-            All activities
+          <span className='font-semibold text-primary'>Recent activities</span>
+          <Link href={renderedOption.activities.link} className='flex items-center gap-1'>
+            All activities <Icon icon='ph:arrow-right-bold' className='text-gray-400' />
           </Link>
         </div>
 
         <hr className='border-gray-custom-100 my-5' />
 
         <div>
-          {/* hey */}
+          <renderedOption.activities.component />
         </div>
       </section>
     </div>
