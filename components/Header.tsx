@@ -43,12 +43,12 @@ const Header = ({}: Props) => {
     InjectedAccountWithMeta[]
   >([]);
 
-  const signMessage = async () => {
-    if (accountConnected.length == 0) {
+  const signMessage = async (accounts: InjectedAccountWithMeta[]) => {
+    if (accounts.length == 0) {
       toast.error("Please connect your wallet first");
       return;
     }
-    const account = accountConnected[0];
+    const account = accounts[0];
 
     // to be able to retrieve the signer interface from this account
     // we can use web3FromSource which will return an InjectedExtension type
@@ -68,6 +68,7 @@ const Header = ({}: Props) => {
         ),
         type: "bytes",
       });
+      setAccountsConnected(accounts);
       console.log(signature);
     }
   };
@@ -86,10 +87,9 @@ const Header = ({}: Props) => {
     activeExtension
       ? (accounts = await web3Accounts())
       : console.log("No Accounts Found");
-    setAccountsConnected(accounts);
 
     // sign message
-    await signMessage();
+    await signMessage(accounts);
   };
 
   const path = usePathname();
