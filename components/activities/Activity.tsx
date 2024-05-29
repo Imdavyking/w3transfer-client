@@ -17,7 +17,7 @@ const Activity = ({
   const formatedDate = formatDistance(createdAt, new Date(), { addSuffix: true });
 
   return (
-    <div className="grid grid-cols-4 gap-2">
+    <div className="grid grid-cols-4 gap-2 bg-white/50 p-2 rounded">
       <div className="col-span-2 flex flex-col gap-1">
         <h2 className="md:leading-none max-md:text-sm">{title}</h2>
         <p className="text-gray-custom-200 max-md:text-xs">{formatedDate}</p>
