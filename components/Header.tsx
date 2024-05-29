@@ -73,6 +73,7 @@ const Header = ({}: Props) => {
     }
   };
   const connectExtension = async () => {
+    if (accountConnected.length > 0) return;
     let activeExtension: InjectedExtension[] = await web3Enable(
       config.APP_NAME
     );
