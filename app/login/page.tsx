@@ -22,7 +22,7 @@ const Login = (props: Props) => {
   }, [])
 
   const [form] = useState({
-    wallet: '000aff6865635ae11013a83835c019d44ec3f865145943f487ae82a8e7bed3a66b29d7', // remove this in production
+    email: 'user@gmail.com', // remove this in production
   })
 
   const styles = {
@@ -38,7 +38,7 @@ const Login = (props: Props) => {
   const router = useRouter()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if(!form.wallet) {
+    if(!form.email) {
       toast.error('Your wallet address has not been resolved. Please try again.')
       return
     }
@@ -53,7 +53,7 @@ const Login = (props: Props) => {
         <form onSubmit={handleSubmit} className='flex flex-col gap-5 mt-5'>
           <div className='space-y-5 select-none'>
             <Input
-              value={form.wallet}
+              value={form.email}
               // onValueChange={(value) => setForm({ ...form, wallet: value })}
               type="text"
               label="Your wallet address"
