@@ -9,6 +9,7 @@ const Envelope = (props: Props) => {
       {Array.from({ length: 5 }).map((_, i) => (
         <Activity
           key={i}
+          isCompleted={i % 2 === 0}
           title='Complete with DocuSign: mou-david-favour.pdf'
           createdAt={subDays(new Date(), 3)}
         />
