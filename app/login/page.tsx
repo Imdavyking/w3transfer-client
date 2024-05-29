@@ -23,7 +23,7 @@ const Login = (props: Props) => {
   }, []);
 
   const [form] = useState({
-    email: "user@gmail.com", // remove this in production
+    email: "", // remove this in production
   });
 
   const styles = {
