@@ -5,12 +5,12 @@ type Props = {}
 
 const FileShare = (props: Props) => {
   return (
-    <section className="grid gap-5">
+    <section className="grid gap-3">
       {Array.from({ length: 2 }).map((_, i) => (
         <Activity
           key={i}
           isCompleted={i % 2 === 0}
-          title='Complete with DocuSign: file.pdf'
+          title='Shared: file.pdf'
           createdAt={subDays(new Date(), 3)}
         />
       ))}
