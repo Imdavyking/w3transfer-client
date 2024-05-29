@@ -8,7 +8,6 @@ export default function Home() {
     <main className="flex-1 flex justify-center items-center">
       home page
       <Link href="/login">login</Link>
-      <Toaster />
     </main>
   );
 }

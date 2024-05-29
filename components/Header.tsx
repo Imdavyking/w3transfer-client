@@ -3,7 +3,7 @@ import { act, useContext, useEffect, useLayoutEffect } from "react";
 import { HeaderContentContext } from "@/contexts";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import {
   web3Enable,
   web3Accounts,
@@ -47,6 +47,7 @@ const Header = ({}: Props) => {
     );
 
     if (activeExtension.length == 0) {
+      console.log("hee");
       toast.error("Please install Polkadot extension to connect (Talisman)");
       return;
     }
@@ -69,6 +70,7 @@ const Header = ({}: Props) => {
 
   return (
     <header className="bg-white border-b border-gray-custom-100">
+      <Toaster />
       <div className="max-w-7xl w-full mx-auto px-4 md:px-8 py-5 flex justify-between overflow-hidden">
         {content ||
           (!contentLeft && !contentRight && (
