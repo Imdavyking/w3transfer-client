@@ -10,6 +10,12 @@ import {
   web3FromAddress,
   web3FromSource,
 } from "@polkadot/extension-dapp";
+const {
+  cryptoWaitReady,
+  decodeAddress,
+  signatureVerify,
+} = require("@polkadot/util-crypto");
+const { u8aToHex } = require("@polkadot/util");
 import { ApiPromise, WsProvider } from "@polkadot/api";
 import { useState } from "react";
 import config from "../config.json";
@@ -43,6 +49,17 @@ const Header = ({}: Props) => {
     InjectedAccountWithMeta[]
   >([]);
 
+  const isValidSignature = (
+    signedMessage: string,
+    signature: string,
+    address: string
+  ): any => {
+    const publicKey = decodeAddress(address);
+    const hexPublicKey = u8aToHex(publicKey);
+
+    return signatureVerify(signedMessage, signature, hexPublicKey).isValid;
+  };
+
   const signMessage = async (accounts: InjectedAccountWithMeta[]) => {
     if (accounts.length == 0) {
       toast.error("Please connect your wallet first");
@@ -61,15 +78,17 @@ const Header = ({}: Props) => {
     if (!!signRaw) {
       // after making sure that signRaw is defined
       // we can use it to sign our message
+      let message =
+        "I am signing this message to prove that I own this account";
       const { signature } = await signRaw({
         address: account.address,
-        data: stringToHex(
-          "I am signing this message to prove that I own this account"
-        ),
+        data: stringToHex(message),
         type: "bytes",
       });
-      setAccountsConnected(accounts);
-      console.log(signature);
+
+      await cryptoWaitReady();
+      const isValid = isValidSignature(message, signature, account.address);
+      if (isValid) setAccountsConnected(accounts);
     }
   };
   const connectExtension = async () => {
