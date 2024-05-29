@@ -1,8 +1,9 @@
 "use client";
-import { useContext, useEffect, useLayoutEffect } from "react";
+import { act, useContext, useEffect, useLayoutEffect } from "react";
 import { HeaderContentContext } from "@/contexts";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import {
   web3Enable,
   web3Accounts,
@@ -44,6 +45,11 @@ const Header = ({}: Props) => {
     let activeExtension: InjectedExtension[] = await web3Enable(
       config.APP_NAME
     );
+
+    if (activeExtension.length == 0) {
+      toast.error("Please install Polkadot extension to connect (Talisman)");
+      return;
+    }
     setActiveConnection(activeExtension);
 
     let accounts: InjectedAccountWithMeta[] = [];
