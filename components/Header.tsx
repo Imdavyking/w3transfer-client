@@ -74,7 +74,7 @@ const Header = ({}: Props) => {
             </Link>
           ))}
         {!content && (contentRight || contentLeft) && (
-          <>
+          <span>
             {contentLeft || (
               <Link
                 href="/"
@@ -84,7 +84,7 @@ const Header = ({}: Props) => {
               </Link>
             )}
             {contentRight}
-          </>
+          </span>
         )}
         <Button className="uppercase" onPress={connectExtension}>
           {accountConnected.length > 0
