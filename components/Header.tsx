@@ -81,14 +81,15 @@ const Header = ({}: Props) => {
       return;
     }
     setActiveConnection(activeExtension);
-    // sign message
-    await signMessage();
 
     let accounts: InjectedAccountWithMeta[] = [];
     activeExtension
       ? (accounts = await web3Accounts())
       : console.log("No Accounts Found");
     setAccountsConnected(accounts);
+
+    // sign message
+    await signMessage();
   };
 
   const path = usePathname();
