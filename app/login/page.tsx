@@ -56,9 +56,9 @@ const Login = (props: Props) => {
               value={form.email}
               // onValueChange={(value) => setForm({ ...form, wallet: value })}
               type="text"
-              label="Your wallet address"
+              label="Your email address"
               variant="bordered"
-              placeholder="000aff6865635ae11013a83835c01..."
+              placeholder="user@gmail.com"
               isReadOnly
               isDisabled
               classNames={styles}

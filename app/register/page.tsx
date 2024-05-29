@@ -60,7 +60,7 @@ const Register = (props: Props) => {
               type="text"
               label="Your email address"
               variant="bordered"
-              placeholder="000aff6865635ae11013a83835c01..."
+              placeholder="user@gmail.com"
               className="select-none"
               classNames={styles}
             />
